@@ -7,6 +7,7 @@ export function registerRoutes(router: Router): void {
 }
 
 function register(routePath: string, router: Router) {
-	const route = require(routePath);
-	route.register(router);
+	// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+	const { register } = require(routePath) as { register: (router: Router) => void };
+	register(router);
 }
