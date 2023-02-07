@@ -1,11 +1,11 @@
 module.exports = {
-	extends: ["eslint-config-codely/typescript"],
+	extends: ['eslint-config-codely/typescript'],
 	overrides: [
 		{
-			files: ["*.ts", "*.tsx"],
+			files: ['*.ts', '*.tsx'],
 			parserOptions: {
-				project: ["./tsconfig.json"],
-			},
-		},
-	],
+				project: ['./tsconfig.json']
+			}
+		}
+	]
 };
