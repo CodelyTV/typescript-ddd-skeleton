@@ -30,7 +30,7 @@ export class Server {
 
 		registerRoutes(router);
 
-		router.use((err: Error, req: Request, res: Response, next: Function) => {
+		router.use((err: Error, req: Request, res: Response, next: () => void) => {
 			console.log(err);
 			res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
 		});
@@ -38,11 +38,10 @@ export class Server {
 
 	async listen(): Promise<void> {
 		return new Promise(resolve => {
+			const env = this.express.get('env') as string;
 			this.httpServer = this.express.listen(this.port, () => {
 				console.log(
-					`  Mock Backend App is running at http://localhost:${this.port} in ${this.express.get(
-						'env'
-					)} mode`
+					`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`
 				);
 				console.log('  Press CTRL-C to stop\n');
 				resolve();
@@ -50,7 +49,7 @@ export class Server {
 		});
 	}
 
-	getHTTPServer() {
+	getHTTPServer(): Server['httpServer'] {
 		return this.httpServer;
 	}
 

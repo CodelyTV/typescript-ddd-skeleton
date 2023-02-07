@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const common = [
 	'--require-module ts-node/register' // Load TypeScript module
 ];
